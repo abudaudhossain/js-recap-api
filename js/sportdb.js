@@ -1,17 +1,13 @@
-const getSportdbInfo = (url, type) =>{
-    fetch(url)
+const getSportdbInfo = () =>{
+    fetch('https://www.thesportsdb.com/api/v1/json/1/all_sports.php')
         .then(res => res.json())
-        .then(data => displaySportsInfo(data.sports.slice(0, 12), type));
+        .then(data => displaySportsInfo(data.sports.slice(0, 20)));
 }
-getSportdbInfo('https://www.thesportsdb.com/api/v1/json/1/all_sports.php', 'Sport Type');
-getSportdbInfo('https://www.thesportsdb.com/api/v1/json/1/all_sports.php', 'Sport');
+getSportdbInfo();
 
-const displaySportsInfo = (sports, type) =>{
+const displaySportsInfo = (sports) =>{
     const sportInfoContainer = document.getElementById("sports-container");
-    const infoContainer = document.getElementById("title");
-    const h2 = document.createElement('h2');
-    h2.innerText = type;
-    infoContainer.appendChild(h2);
+   
     sports.forEach(sport =>{
         const div = document.createElement('div');
         div.classList.add('col');
